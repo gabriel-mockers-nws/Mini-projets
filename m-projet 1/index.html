@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-projet 1</title>
+</head>
+<body>
+    <header class="entete">
+        <h1 class="firstTitle">Mini projet n°1</h1>
+        <div class="Enoncé">
+            <p>faire une page HTML simple avec des champs</p>
+            <p>Mettre un Nom et prénom</p>
+            <p>Faire un bouton qui va ajouter l'étudiant dans une liste li</p>
+        </div>
+    </header>
+    <main>
+        <div class="champs">
+            <form id="Formulaire-étudiant">
+                <div class="id">
+                    <label for="nameinput">Votre nom</label>
+                    <input type="text" required name="name" id="nameinput" placeholder="ex : Dupuis">
+                    <label for="firstnameinput">Votre prénom</label>
+                    <input type="text" required name="firstname" id="firstnameinput" placeholder="ex : Jack">
+                </div>
+            </form>
+            <div class="bouton">
+                <button onclick="listeEtudiants()" >Ajouter dans la liste</button>
+            </div>
+            <div class="liste">
+                <h3>Liste des étudiants</h3>
+                <ul id="listeDesEtudiants"></ul>
+            </div>
+        </div>
+    </main>
+    <script>
+        function listeEtudiants () {
+            const name = document.getElementById("nameinput")
+            const firstname = document.getElementById("firstnameinput")
+            if (name.checkValidity() == false) {
+                name.reportValidity()
+                return 
+            }
+            if (firstname.checkValidity() == false) {
+                firstname.reportValidity()
+                return 
+            }
+            const listeDesEtudiants = document.getElementById("listeDesEtudiants")
+            const newLi = document.createElement("li")
+            const newContent = document.createTextNode(`${name.value} ${firstname.value}`)
+            newLi.appendChild(newContent)
+            listeDesEtudiants.appendChild(newLi)
+            document.getElementById("Formulaire-étudiant").reset()
+        }
+
+    </script>
+</body>
+</html>
